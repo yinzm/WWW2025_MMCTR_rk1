@@ -83,7 +83,7 @@ source activate fuxictr
 3. Make a submission to [the challenge system](https://www.codabench.org/competitions/5372/).
 
     <div align="left">
-        <img width="80%" src="https://cdn.jsdelivr.net/gh/reczoo/WWW2025_MMCTR_Challenge@main/img/submission_v1.jpg">
+        <img width="90%" src="https://cdn.jsdelivr.net/gh/reczoo/WWW2025_MMCTR_Challenge@main/img/submission_v1.jpg">
     </div>
 
 ### Potential Improvements

@@ -2,18 +2,18 @@
 
 The WWW 2025 Multimodal CTR Prediction Challenge: https://www.codabench.org/competitions/5372/
 
-The MM-CTR challenge is organized by the WWW 2025 EReL@MIR workshop, which contains two sub-tasks: multimodal item embedding and multimodal CTR prediction. The first task centers on developing multimodal representation learning and fusion methods tailored for recommendation tasks, while the second focuses on designing CTR prediction models that effectively utilize embedding features to enhance recommendation accuracy. The two challenge tasks are designed to promote potential solutions with practical value and insights for industrial applications. Please checkout more details on the challenge website: https://erel-mir.github.io/challenge/mmctr-track2/.
+The MM-CTR challenge is organized by the WWW 2025 EReL@MIR workshop, which contains two sub-tasks: multimodal item embedding and multimodal CTR prediction. The first task centers on developing multimodal representation learning and fusion methods tailored for recommendation tasks, while the second focuses on designing CTR prediction models that effectively utilize embedding features to enhance recommendation accuracy. The two challenge tasks are designed to promote potential solutions with practical value and insights for industrial applications. Please check out more details on the challenge website: https://erel-mir.github.io/challenge/mmctr-track2/.
 
-This baseline is built on top of [FuxiCTR](https://github.com/reczoo/FuxiCTR), a configurable, tunable, and reproducible library for CTR prediction. The library has been listed among [the recommended evaluation frameworks](https://github.com/ACMRecSys/recsys-evaluation-frameworks) by the ACM RecSys Conference. We open source the baseline code to help beginers get familar with FuxiCTR and quickly get started on this task.
+This baseline is built on top of [FuxiCTR, a configurable, tunable, and reproducible library for CTR prediction](https://github.com/reczoo/FuxiCTR). The library has been listed among [the recommended frameworks](https://github.com/ACMRecSys/recsys-evaluation-frameworks) by the ACM RecSys Conference. We open source the baseline solution code to help beginers get familar with FuxiCTR and quickly get started on this task.
 
-🔥 If you find our code helpful in your competition, please cite the following paper:
+🔥 Please cite the paper:
 
 + Jieming Zhu, Jinyang Liu, Shuai Yang, Qi Zhang, Xiuqiang He. [Open Benchmarking for Click-Through Rate Prediction](https://arxiv.org/abs/2009.05794). *The 30th ACM International Conference on Information and Knowledge Management (CIKM)*, 2021.
 
 
 ### Data Preparation
 
-1. Download the datasets at: https://recsys.westlake.edu.cn/MicroLens_1M_MMCTR/
+1. Download the datasets at: https://recsys.westlake.edu.cn/MicroLens_1M_MMCTR
 
 2. Unzip the data files to the `data` directory
 
@@ -80,7 +80,7 @@ source activate fuxictr
 
     After finishing prediction, you can submit the solution file `submission/DIN_MicroLens_1M_x1_xxx.zip`.
 
-3. Make a submission to [the challenge system](https://www.codabench.org/competitions/5372/).
+3. Make a submission to [the leaderboard](https://www.codabench.org/competitions/5372/#/results-tab).
 
     <div align="left">
         <img width="90%" src="https://cdn.jsdelivr.net/gh/reczoo/WWW2025_MMCTR_Challenge@main/img/submission_v1.jpg">

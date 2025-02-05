@@ -19,7 +19,6 @@ import numpy as np
 from torch.utils.data import Dataset, DataLoader
 from torch.utils.data.dataloader import default_collate
 import pandas as pd
-import polars as pl
 import torch
 
 
@@ -35,17 +34,17 @@ class ParquetDataset(Dataset):
         return self.darray.shape[0]
 
     def load_data(self, data_path):
-        df = pl.read_parquet(data_path)
+        df = pd.read_parquet(data_path)
         data_arrays = []
         idx = 0
         for col in df.columns:
-            if df[col].dtype == pl.List or df[col].dtype == pl.Array:
-                array = df[col].explode().to_numpy().reshape(df.shape[0], -1)
+            if df[col].dtype == "object":
+                array = np.array(df[col].to_list())
                 seq_len = array.shape[1]
                 self.column_index[col] = [i + idx for i in range(seq_len)]
                 idx += seq_len
             else:
-                array = np.array(df[col])
+                array = df[col].to_numpy()
                 self.column_index[col] = idx
                 idx += 1
             data_arrays.append(array)
@@ -94,5 +93,5 @@ class BatchCollator(object):
         item_dict = dict()
         for col in item_info.columns:
             if col in all_cols:
-                item_dict[col] = torch.from_numpy(np.stack(item_info[col].to_numpy()))
+                item_dict[col] = torch.from_numpy(np.array(item_info[col].to_list()))
         return batch_dict, item_dict, mask

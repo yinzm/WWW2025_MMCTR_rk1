@@ -5,3 +5,4 @@ from .PPNet import PPNet
 from .TransAct import TransAct
 from .TransAct_Wukong import TransAct_Wukong
 from .BST import BST
+from .TransAct_Proj import TransAct_Proj

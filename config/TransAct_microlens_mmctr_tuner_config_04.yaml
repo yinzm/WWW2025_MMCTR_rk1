@@ -1,5 +1,5 @@
 base_config: ./config/transact_config/
-base_expid: TransAct_default_01
+base_expid: TransAct_default_03
 dataset_id: MicroLens_1M_x1
 
 dataset_config:
@@ -21,8 +21,8 @@ dataset_config:
             - {name: item_emb_d128, active: True, dtype: float, type: embedding, source: item, embedding_dim: 128}
         label_col: {name: label, dtype: float}
 
-tuner_space: # dcn_layers+
-    dcn_cross_layers: 4
+tuner_space: # learning_rate-
+    dcn_cross_layers: 3
     dcn_hidden_units: [[1024, 512, 256]]
     mlp_hidden_units: [[64, 32]]
     embedding_dim: 64
@@ -34,6 +34,6 @@ tuner_space: # dcn_layers+
     transformer_dropout: 0
     dim_feedforward: 256
     first_k_cols: 5
-    learning_rate: 5.e-4
+    learning_rate: 2.e-4
     batch_size: 128
     batch_norm: False

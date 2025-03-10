@@ -21,19 +21,19 @@ dataset_config:
             - {name: item_emb_d128, active: True, dtype: float, type: embedding, source: item, embedding_dim: 128}
         label_col: {name: label, dtype: float}
 
-tuner_space: # learning_rate-
-    dcn_cross_layers: 3
-    dcn_hidden_units: [[1024, 512, 256]]
+tuner_space: # dcn_cross_layers-,first_k_cols-
+    dcn_cross_layers: 2
+    dcn_hidden_units: [[512, 256, 128]]
     mlp_hidden_units: [[64, 32]]
     embedding_dim: 64
     embedding_regularizer: 0
-    net_dropout: 0
+    net_dropout: 0.2
     net_regularizer: 0
     num_heads: 1
     transformer_layers: 2
-    transformer_dropout: 0
+    transformer_dropout: 0.1
     dim_feedforward: 256
-    first_k_cols: 5
-    learning_rate: 2.e-4
+    first_k_cols: 1
+    learning_rate: 5.e-4
     batch_size: 128
     batch_norm: False

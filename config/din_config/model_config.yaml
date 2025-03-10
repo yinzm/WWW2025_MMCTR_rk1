@@ -23,11 +23,11 @@ DIN_default: # This is a config template
     embedding_regularizer: 0
     net_regularizer: 0
     batch_size: 4096
-    embedding_dim: 64
+    embedding_dim: 128
     dnn_hidden_units: [1024, 512, 256]
     dnn_activations: ReLU
     attention_hidden_units: [512, 256]
-    attention_hidden_activations: ReLU
+    attention_hidden_activations: Dice
     attention_output_activation: null
     attention_dropout: 0.1
     din_use_softmax: False

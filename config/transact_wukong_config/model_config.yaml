@@ -46,7 +46,7 @@ TransAct_Wukong_default: # This is a config template
     num_layers: 3
     dcn_out_residual: False
 
-TransAct_Wukong_Res_True: # This is a config template
+TransAct_Wukong_default_01: # This is a config template
     model: TransAct_Wukong
     dataset_id: TBD
     loss: 'binary_crossentropy'
@@ -64,7 +64,7 @@ TransAct_Wukong_Res_True: # This is a config template
     mlp_hidden_units: [64, 32]
     num_heads: 1
     transformer_layers: 2
-    transformer_dropout: 0.1
+    transformer_dropout: 0.3
     dim_feedforward: 256
     net_dropout: 0
     first_k_cols: 10
@@ -81,7 +81,7 @@ TransAct_Wukong_Res_True: # This is a config template
     dcn_out_residual: False
 
 
-TransAct_Wukong_Net: # This is a config template
+TransAct_Wukong_default_02: # This is a config template
     model: TransAct_Wukong
     dataset_id: TBD
     loss: 'binary_crossentropy'
@@ -114,4 +114,3 @@ TransAct_Wukong_Net: # This is a config template
     monitor_mode: 'max'
     num_layers: 3
     dcn_out_residual: True
-

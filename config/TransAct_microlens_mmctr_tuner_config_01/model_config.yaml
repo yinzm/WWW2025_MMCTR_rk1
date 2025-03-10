@@ -1,6 +1,6 @@
-TransAct_MicroLens_1M_x1_001_b3082ec9:
+TransAct_MicroLens_1M_x1_001_7d7fe362:
     batch_norm: false
-    batch_size: 512
+    batch_size: 128
     concat_max_pool: true
     dataset_id: MicroLens_1M_x1
     dcn_cross_layers: 3
@@ -9,15 +9,15 @@ TransAct_MicroLens_1M_x1_001_b3082ec9:
     dim_feedforward: 256
     early_stop_patience: 5
     embedding_dim: 64
-    embedding_regularizer: 1.0e-06
+    embedding_regularizer: 0
     epochs: 100
     eval_steps: null
     feature_config: null
     feature_specs: null
-    first_k_cols: 10
+    first_k_cols: 5
     group_id: user_id
     hidden_activations: relu
-    learning_rate: 0.001
+    learning_rate: 0.0005
     loss: binary_crossentropy
     metrics: [logloss, AUC]
     mlp_hidden_units: [64, 32]
@@ -25,7 +25,7 @@ TransAct_MicroLens_1M_x1_001_b3082ec9:
     model_root: ./checkpoints/
     monitor: {AUC: 1, logloss: -1}
     monitor_mode: max
-    net_dropout: 0.1
+    net_dropout: 0
     net_regularizer: 0
     num_heads: 1
     num_workers: 3
@@ -36,7 +36,7 @@ TransAct_MicroLens_1M_x1_001_b3082ec9:
     shuffle: true
     task: binary_classification
     time_window_ms: 86400000
-    transformer_dropout: 0.1
+    transformer_dropout: 0
     transformer_layers: 2
     use_features: null
     use_time_window_mask: false

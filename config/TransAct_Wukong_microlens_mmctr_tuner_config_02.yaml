@@ -1,5 +1,5 @@
 base_config: ./config/transact_wukong_config/
-base_expid: TransAct_Wukong_Res_True
+base_expid: TransAct_Wukong_default_01
 dataset_id: MicroLens_1M_x1
 
 dataset_config:
@@ -22,10 +22,20 @@ dataset_config:
         label_col: {name: label, dtype: float}
 
 tuner_space:
-    embedding_regularizer: [1.e-6]
+    dcn_cross_layers: 2
+    dcn_hidden_units: [[1024, 512, 256]]
+    mlp_hidden_units: [[64, 32]]
+    embedding_dim: 32
+    embedding_regularizer: 0
+    net_dropout: 0.2
     net_regularizer: 0
-    net_dropout: 0.1
-    learning_rate: 1.e-3
+    num_heads: 1
+    transformer_layers: 2
+    transformer_dropout: 0.1
+    dim_feedforward: 256
+    first_k_cols: 5
+    learning_rate: 1.e-4
     batch_size: 128
-#    num_layers: 3
-#    dcn_out_residual: False
+    batch_norm: False
+    dcn_out_residual: True
+    num_layers: 2

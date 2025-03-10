@@ -176,3 +176,8 @@ data/
 checkpoints/
 clash
 .git/
+
+*.csv
+*.out
+*tuner*
+*.zip

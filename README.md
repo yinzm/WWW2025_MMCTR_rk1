@@ -42,7 +42,7 @@ Requirements:
 
 Environment setup:
 
-```
+```bash
 conda create -n fuxictr_momo python==3.9
 pip install -r requirements.txt
 source activate fuxictr_momo

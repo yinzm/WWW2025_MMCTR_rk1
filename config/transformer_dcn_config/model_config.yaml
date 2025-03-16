@@ -37,5 +37,6 @@ Transformer_DCN_default: # This is a config template
     epochs: 100
     shuffle: True
     seed: 20242025
-    monitor: {'AUC': 1, 'logloss': -1}
+    monitor: {'AUC': 1}
     monitor_mode: 'max'
+    first_k_cols: 16

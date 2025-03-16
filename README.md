@@ -50,9 +50,19 @@ source activate fuxictr_momo
 
 ## How to Run
 
+### One-click run
+
+```bash
+sh ./run.sh
+```
+
+This script will run the whole pipeline, including model training and prediction.
+
+### Run step by step
+
 1. Train the model on train and validation sets:
 
-    ```
+    ```bash
     python run_expid.py --config config/Transformer_DCN_microlens_mmctr_tuner_config_01 --expid Transformer_DCN_MicroLens_1M_x1_001_820c435c --gpu 0
     ```
     
@@ -60,7 +70,7 @@ source activate fuxictr_momo
 
 2. Make predictions on the test set:
 
-    ```
+    ```bash
     python prediction.py --config config/Transformer_DCN_microlens_mmctr_tuner_config_01 --expid Transformer_DCN_MicroLens_1M_x1_001_820c435c --gpu 0
     ```
 

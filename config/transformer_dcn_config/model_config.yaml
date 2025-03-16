@@ -19,10 +19,10 @@ Transformer_DCN_default: # This is a config template
     metrics: [logloss, AUC]
     task: binary_classification
     optimizer: adam
-    learning_rate: 1.0e-3
+    learning_rate: 5.0e-4
     embedding_regularizer: 0
     net_regularizer: 0
-    batch_size: 4096
+    batch_size: 128
     embedding_dim: 64
     hidden_activations: relu
     dcn_cross_layers: 3
@@ -30,13 +30,14 @@ Transformer_DCN_default: # This is a config template
     mlp_hidden_units: [64, 32]
     num_heads: 1
     transformer_layers: 2
-    transformer_dropout: 0.1
+    transformer_dropout: 0.2
     dim_feedforward: 256
-    net_dropout: 0
+    net_dropout: 0.2
     batch_norm: False
+    first_k_cols: 16
     epochs: 100
     shuffle: True
     seed: 20242025
     monitor: {'AUC': 1}
     monitor_mode: 'max'
-    first_k_cols: 16
+    concat_max_pool: True

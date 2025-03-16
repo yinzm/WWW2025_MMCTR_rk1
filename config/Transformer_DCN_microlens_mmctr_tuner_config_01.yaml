@@ -34,5 +34,6 @@ tuner_space: # dropout-
     transformer_dropout: 0.1
     dim_feedforward: 256
     learning_rate: 5.e-4
+    first_k_cols: 16
     batch_size: 16
     batch_norm: False

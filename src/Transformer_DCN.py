@@ -13,15 +13,16 @@ class Transformer_DCN(BaseModel):
                  gpu=-1,
                  hidden_activations="ReLU",
                  dcn_cross_layers=3,
-                 dcn_hidden_units=[256, 128, 64],
-                 mlp_hidden_units=[],
+                 dcn_hidden_units=[1024, 512, 256],
+                 mlp_hidden_units=[64, 32],
                  num_heads=1,
-                 transformer_layers=1,
-                 transformer_dropout=0,
-                 dim_feedforward=512,
-                 learning_rate=1e-3,
+                 transformer_layers=2,
+                 transformer_dropout=0.2,
+                 dim_feedforward=256,
+                 learning_rate=5e-4,
                  embedding_dim=64,
-                 net_dropout=0,
+                 net_dropout=0.2,
+                 first_k_cols=16,
                  batch_norm=False,
                  concat_max_pool=True,
                  accumulation_steps=1,
@@ -52,14 +53,15 @@ class Transformer_DCN(BaseModel):
             num_heads=num_heads,
             dropout=transformer_dropout,
             transformer_layers=transformer_layers,
+            first_k_cols=first_k_cols,
             concat_max_pool=concat_max_pool
         )
-        seq_out_dim = (1 + int(concat_max_pool)) * transformer_in_dim
+        seq_out_dim = (first_k_cols + int(concat_max_pool)) * transformer_in_dim
 
         dcn_in_dim = feature_map.sum_emb_out_dim() + seq_out_dim
         self.crossnet = CrossNetV2(dcn_in_dim, dcn_cross_layers)
         self.parallel_dnn = MLP_Block(input_dim=dcn_in_dim,
-                                      output_dim=None, # output hidden layer
+                                      output_dim=None,  # output hidden layer
                                       hidden_units=dcn_hidden_units,
                                       hidden_activations=hidden_activations,
                                       output_activation=None,
@@ -78,7 +80,7 @@ class Transformer_DCN(BaseModel):
     def forward(self, inputs):
         batch_dict, item_dict, mask = self.get_inputs(inputs)
         emb_list = []
-        if batch_dict: # not empty
+        if batch_dict:  # not empty
             feature_emb = self.embedding_layer(batch_dict, flatten_emb=True)
             emb_list.append(feature_emb)
         feat_emb = torch.cat(emb_list, dim=-1)
@@ -89,7 +91,7 @@ class Transformer_DCN(BaseModel):
         target_emb = item_feat_emb[:, -1, :]
         sequence_emb = item_feat_emb[:, 0:-1, :]
         transformer_emb = self.transformer_encoder(
-                target_emb, sequence_emb, mask=mask
+            target_emb, sequence_emb, mask=mask
         )
 
         dcn_in_emb = torch.cat([feat_emb, target_emb, transformer_emb], dim=-1)
@@ -151,8 +153,11 @@ class Transformer(nn.Module):
                  num_heads=1,
                  dropout=0,
                  transformer_layers=1,
+                 first_k_cols=16,
                  concat_max_pool=True):
         super(Transformer, self).__init__()
+        self.concat_max_pool = concat_max_pool
+        self.first_k_cols = first_k_cols
         encoder_layer = nn.TransformerEncoderLayer(
             d_model=transformer_in_dim,
             nhead=num_heads,
@@ -160,7 +165,6 @@ class Transformer(nn.Module):
             dropout=dropout,
             batch_first=True,
         )
-        self.concat_max_pool = concat_max_pool
         self.transformer_encoder = nn.TransformerEncoder(
             encoder_layer, num_layers=transformer_layers
         )
@@ -173,7 +177,7 @@ class Transformer(nn.Module):
         concat_seq_emb = torch.cat([sequence_emb,
                                     target_emb.unsqueeze(1).expand(-1, seq_len, -1)], dim=-1)
         # get sequence mask (1's are masked)
-        key_padding_mask = self.adjust_mask(mask).bool() # keep the last dim
+        key_padding_mask = self.adjust_mask(mask).bool()  # keep the last dim
         tfmr_out = self.transformer_encoder(src=concat_seq_emb,
                                             src_key_padding_mask=key_padding_mask)
         tfmr_out = tfmr_out.masked_fill(
@@ -181,8 +185,7 @@ class Transformer(nn.Module):
         )
         # process the transformer output
         output_concat = []
-        output_concat.append(tfmr_out[:, -1])
-
+        output_concat.append(tfmr_out[:, -self.first_k_cols:].flatten(start_dim=1))
         if self.concat_max_pool:
             # Apply max pooling to the transformer output
             tfmr_out = tfmr_out.masked_fill(

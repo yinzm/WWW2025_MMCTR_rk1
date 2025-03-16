@@ -15,7 +15,7 @@ Two future works can also be seen in the right part of the figure.
 
 Both of the two future works are dedicated to utilizing the semantic information of the multimodal representations.
 
-We provide codes for future work 1 in `src/TransActQU.py`, and codes for future work 2 is still in progress.
+We provide codes for future work 1 in `src/Transformer_DCN_Quant.py`, and codes for future work 2 is still in progress.
 Due to the time limiation, we have not tuned the hyperparameters of the quantization part, leading to suboptimal performance.
 
 But we still believe that these two directions have huge potential.

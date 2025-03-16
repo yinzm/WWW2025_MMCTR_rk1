@@ -156,6 +156,7 @@ class Transformer_DCN_Quant(BaseModel):
                  net_regularizer=None,
                  top_k=3,
                  codebook_num=3,
+                 default_vocab=5,
                  global_item_info=None,
                  **kwargs):
         super().__init__(feature_map,
@@ -181,7 +182,6 @@ class Transformer_DCN_Quant(BaseModel):
         )
 
         if "quanid" not in self.feature_map.features:
-            default_vocab = 5
             self.feature_map.features["quanid"] = {
                 "dtype": "int",
                 "vocab_size": default_vocab,

@@ -30,7 +30,7 @@ And works on these two directions **are still ongoing** even after the challenge
 
 ## Environment
 
-We run the experiments on a customized 4080 Super GPU server with 32GB memory from [AutoDL](https://www.autodl.com/).
+We run the experiments on a customized 4080 Super GPU server with 32GB memory (vGPU-32G) from [AutoDL](https://www.autodl.com/).
 
 Requirements:
 

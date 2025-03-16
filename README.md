@@ -6,12 +6,22 @@ The overall architecture of our solution is shown below.
 
 ![momo](img/momo.png)
 
+Our model (without future work part) achieves a **0.9839** AUC on the test set.
+
 ## Notes & Future Work
 
 Our model is roughly based on **Transformer** and **DCNv2**. 
 Two future works can also be seen in the right part of the figure.
 - **Semantic embeddings with quantization** (Done, tuning)
+  - Due to the success of quantization in computer vision, we believe that quantization can also be applied to multimodal RecSys.
+**Vector Quantization** (VQ) and **Residual Quantization** (RQ) are used to quantize the original multimodal embeddings.
+Quantization transforms the freezed multimodal embeddings into discrete learnable semantic codes.
+  - Codes for quantization are provided in `src/Transformer_DCN_Quant.py` and the tuning work is still in progress.
 - **Semantic similarity scores as part of the input of Transformer** (In progress)
+  - Multimodal embeddings contain rich semantic information, and users have specific preferences for different semantic information.
+Semantic similarity information can be explicitly utilized in our model for better performance.
+  - We plan to use **semantic similarity scores** as part of the input of the Transformer part.
+
 
 Both of the two future works are dedicated to utilizing the semantic information of the multimodal representations.
 

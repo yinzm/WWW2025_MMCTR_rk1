@@ -25,11 +25,8 @@ Semantic similarity information can be explicitly utilized in our model for bett
 
 Both of the two future works are dedicated to utilizing the semantic information of the multimodal representations.
 
-We provide codes for future work 1 in `src/Transformer_DCN_Quant.py`, and codes for future work 2 is still in progress.
-Due to the time limiation, we have not tuned the hyperparameters of the quantization part, leading to suboptimal performance.
-
-But we still believe that these two directions have huge potential.
-And works on these two directions **are continued** after the challenge.
+We believe that these two directions have huge potential.
+And works on these two directions **are still ongoing** even after the challenge.
 
 ## Environment
 
@@ -69,6 +66,6 @@ source activate fuxictr_momo
 
 3. Submission result on [the leaderboard](https://www.codabench.org/competitions/5372/#/results-tab).
 
-   In particular, we got a 0.9814 result (Submission ID: 246140) for un-tuned quantization model (future work 1).
+   In particular, we got a 0.9814 result (Submission ID: 246140) for un-tuned Residual Quantization (RQ) model (part of future work 1).
 
 4. ![result](img/result.png)

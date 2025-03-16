@@ -39,3 +39,7 @@ Transformer_DCN_Quant_MicroLens_1M_x1_001_f2fc2995:
     transformer_layers: 2
     use_features: null
     verbose: 1
+    top_k: 10
+    codebook_num: 5
+    default_vocab: 10
+

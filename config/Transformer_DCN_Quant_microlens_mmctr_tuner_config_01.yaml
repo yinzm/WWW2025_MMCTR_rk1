@@ -38,3 +38,6 @@ tuner_space:
     learning_rate: 5.e-4
     batch_size: 128
     batch_norm: False
+    top_k: 10
+    codebook_num: 5
+    default_vocab: 10
